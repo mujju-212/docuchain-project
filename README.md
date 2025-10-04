@@ -1,6 +1,6 @@
-# 🔗 DocuChain - Blockchain Document Management System
+# 🔗 DocuChain - Blockchain Document Upload & Sharing Platform
 
-A secure, decentralized document management system built with Flask, Web3.js, and MetaMask integration. DocuChain allows users to upload documents to IPFS, verify them on the Sepolia blockchain, and manage access permissions through smart contracts.
+A secure, decentralized document upload and sharing platform built with Flask, Web3.js, and MetaMask integration. DocuChain allows users to upload documents to IPFS, verify them on the Sepolia blockchain, and share them with other users through smart contracts.
 
 ## ✨ Features
 
@@ -9,7 +9,7 @@ A secure, decentralized document management system built with Flask, Web3.js, an
 - **📤 Document Upload** - Upload documents with automatic IPFS storage
 - **⛓️ Blockchain Verification** - Smart contract verification on Sepolia testnet
 - **🤝 Document Sharing** - Share documents with other users with permission controls
-- **📱 Responsive Dashboard** - Clean, modern interface for document management
+- **📱 Responsive Dashboard** - Clean, modern interface for document upload and sharing
 - **🔄 Wallet Management** - Connect/disconnect different MetaMask wallets easily
 
 ## 🛠️ Technology Stack
@@ -62,12 +62,23 @@ A secure, decentralized document management system built with Flask, Web3.js, an
    pip install flask flask-cors web3 requests
    ```
 
-4. **Start the Flask server**
+4. **Configure environment variables**
+   ```bash
+   # Copy the template file
+   cp backend/.env.template backend/.env
+   
+   # Edit .env file with your actual values:
+   # - Get Pinata API keys from https://app.pinata.cloud/developers/api-keys
+   # - Get Infura RPC URL from https://infura.io/ (optional)
+   # - Set your own Flask secret key
+   ```
+
+5. **Start the Flask server**
    ```bash
    python app.py
    ```
 
-5. **Open your browser**
+6. **Open your browser**
    Navigate to `http://localhost:5000`
 
 ### MetaMask Setup
@@ -107,10 +118,9 @@ A secure, decentralized document management system built with Flask, Web3.js, an
 docuchain-project/
 ├── backend/
 │   ├── app.py              # Main Flask application
-│   ├── database.py         # Database initialization
-│   ├── repair_database.py  # Database maintenance
-│   ├── test_api.py         # API testing
-│   └── docuchain.db        # SQLite database
+│   ├── .env.template       # Environment variables template
+│   ├── requirements.txt    # Python dependencies
+│   └── wallet_endpoints.py # Wallet management APIs
 ├── frontend/
 │   ├── index.html          # Login page
 │   ├── register.html       # Registration page
@@ -118,6 +128,8 @@ docuchain-project/
 │   ├── styles.css          # Application styles
 │   ├── app_with_metamask.js # Main application logic
 │   └── metamask.js         # MetaMask integration
+├── smart-contract/
+│   └── DocumentManager.sol # Solidity smart contract
 └── README.md
 ```
 
