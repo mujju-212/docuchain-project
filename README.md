@@ -1,4 +1,4 @@
-# 🔗 DocuChain - Blockchain Document Upload & Sharing Platform
+# 🔗 Blockchain Document Upload & Sharing Platform
 
 A secure, decentralized document upload and sharing platform built with Flask, Web3.js, and MetaMask integration. DocuChain allows users to upload documents to IPFS, verify them on the Sepolia blockchain, and share them with other users through smart contracts.
 
