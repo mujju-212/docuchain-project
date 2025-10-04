@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuChain - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">🔗 DocuChain</div>
+        <div class="nav-user">
+            <span id="userInfo"></span>
+            <button id="connectMetaMaskBtn" onclick="connectMetaMask()" class="btn btn-primary" style="display: inline-block; margin-right: 10px;">🦊 Connect MetaMask</button>
+            <button id="disconnectMetaMaskBtn" onclick="disconnectMetaMask()" class="btn btn-warning" style="display: inline-block; margin-right: 10px;">🔌 Disconnect Wallet</button>
+            <button onclick="logout()" class="btn btn-secondary">Logout</button>
+        </div>
+    </nav>
+    
+    <!-- Notification area for MetaMask instructions -->
+    <div id="notificationArea" style="display: none; background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 10px; margin: 10px; border-radius: 5px; text-align: center;">
+        <strong>💡 Tip:</strong> To see MetaMask account selection popup, manually disconnect this site from your MetaMask extension first.
+    </div>
+    
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <button class="tab-btn active" onclick="showTab('upload')">📤 Upload Document</button>
+            <button class="tab-btn" onclick="showTab('myDocs')">📁 My Documents</button>
+            <button class="tab-btn" onclick="showTab('shared')">🤝 Shared With Me</button>
+        </div>
+        
+        <div class="main-content">
+            <!-- Upload Tab -->
+            <div id="uploadTab" class="tab-content active">
+                <h2>Upload Document to Blockchain</h2>
+                
+                <div class="upload-section">
+                    <form id="uploadForm">
+                        <div class="form-group">
+                            <label for="fileInput">Select File</label>
+                            <input type="file" id="fileInput" name="file" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="documentType">Document Type</label>
+                            <select id="documentType" name="documentType" required>
+                                <option value="">Select type...</option>
+                                <option value="pdf">PDF</option>
+                                <option value="doc">Document</option>
+                                <option value="image">Image</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Upload to Blockchain</button>
+                    </form>
+                    
+                    <div id="uploadStatus" class="status-box"></div>
+                </div>
+            </div>
+            
+            <!-- My Documents Tab -->
+            <div id="myDocsTab" class="tab-content">
+                <h2>My Documents</h2>
+                <div style="margin-bottom: 15px;">
+                    <button onclick="loadMyDocuments()" class="btn btn-secondary">Refresh</button>
+                </div>
+                <div id="myDocumentsList" class="documents-grid"></div>
+            </div>
+            
+            <!-- Shared Documents Tab -->
+            <div id="sharedTab" class="tab-content">
+                <h2>Shared With Me</h2>
+                <button onclick="loadSharedDocuments()" class="btn btn-secondary">Refresh</button>
+                <div id="sharedDocumentsList" class="documents-grid"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeShareModal()">&times;</span>
+            <h2>Share Document</h2>
+            <p>Document: <strong id="shareDocumentName"></strong></p>
+            
+            <div class="form-group">
+                <label>Select User to Share With:</label>
+                <select id="shareWithUser" class="form-control"></select>
+            </div>
+            
+            <div class="form-group">
+                <label>Permission:</label>
+                <select id="permission" class="form-control">
+                    <option value="read">Read Only</option>
+                    <option value="write">Read & Write</option>
+                </select>
+            </div>
+            
+            <form id="shareForm">
+                <button type="submit" class="btn btn-primary">Share Document</button>
+            </form>
+            <div id="shareStatus" class="status-box"></div>
+        </div>
+    </div>
+    
+    <script src="metamask.js?v=2"></script>
+    <script src="app_with_metamask.js?v=2"></script>
+    
+    <script>
+        // Add test button and ensure Connect MetaMask function is working
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('🔍 DOM loaded, checking MetaMask setup...');
+            
+            // Make sure button is visible
+            const connectBtn = document.getElementById('connectMetaMaskBtn');
+            if (connectBtn) {
+                connectBtn.style.display = 'inline-block';
+                console.log('✅ Connect MetaMask button made visible');
+            }
+            
+            // Test MetaMask availability
+            if (typeof window.ethereum !== 'undefined') {
+                console.log('✅ MetaMask detected');
+            } else {
+                console.log('❌ MetaMask not detected');
+            }
+            
+            // Ensure function is available
+            if (typeof window.connectMetaMask === 'function') {
+                console.log('✅ connectMetaMask function available');
+            } else {
+                console.log('❌ connectMetaMask function not available');
+            }
+        });
+        
+
+    </script>
+</body>
+</html>

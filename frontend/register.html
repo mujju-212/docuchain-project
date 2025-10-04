@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuChain - Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-box">
+            <h1>🔗 DocuChain</h1>
+            <p class="subtitle">Create Your Account</p>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required minlength="6">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="index.html">Login here</a></p>
+            </div>
+            
+            <div id="message" class="message"></div>
+            
+            <div id="walletInfo" class="wallet-info" style="display: none;">
+                <h3>⚠️ IMPORTANT - Save This Information!</h3>
+                <p><strong>Your Wallet Address:</strong></p>
+                <p id="walletAddress" class="wallet-address"></p>
+                <p class="warning">Fund this wallet with Sepolia ETH from: <a href="https://sepoliafaucet.com" target="_blank">Sepolia Faucet</a></p>
+                <button onclick="window.location.href='index.html'" class="btn btn-success">Go to Login</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+        
+        // Check if MetaMask is available
+        async function checkMetaMask() {
+            if (typeof window.ethereum === 'undefined') {
+                alert('❌ MetaMask is not installed! Please install MetaMask browser extension first.');
+                return false;
+            }
+            return true;
+        }
+        
+        // Connect to MetaMask
+        async function connectMetaMask() {
+            try {
+                const accounts = await window.ethereum.request({ 
+                    method: 'eth_requestAccounts' 
+                });
+                
+                if (accounts.length === 0) {
+                    throw new Error('No accounts found');
+                }
+                
+                return accounts[0];
+            } catch (error) {
+                console.error('MetaMask connection error:', error);
+                throw error;
+            }
+        }
+        
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const messageDiv = document.getElementById('message');
+            
+            if (password !== confirmPassword) {
+                messageDiv.textContent = 'Passwords do not match!';
+                messageDiv.className = 'message error';
+                return;
+            }
+            
+            // Check MetaMask availability
+            if (!await checkMetaMask()) {
+                return;
+            }
+            
+            messageDiv.textContent = '🔄 Connecting to MetaMask...';
+            messageDiv.className = 'message';
+            
+            try {
+                // Connect to MetaMask first
+                const walletAddress = await connectMetaMask();
+                
+                messageDiv.textContent = '🔄 Creating account...';
+                
+                // Register with the MetaMask wallet address
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        username, 
+                        email, 
+                        password, 
+                        walletAddress: walletAddress 
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('registerForm').style.display = 'none';
+                    document.getElementById('walletInfo').style.display = 'block';
+                    document.getElementById('walletAddress').textContent = walletAddress;
+                    messageDiv.textContent = 'Registration successful! ✅';
+                    messageDiv.className = 'message success';
+                } else {
+                    messageDiv.textContent = data.error || 'Registration failed';
+                    messageDiv.className = 'message error';
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                if (error.code === 4001) {
+                    messageDiv.textContent = '❌ MetaMask connection rejected. Please try again.';
+                } else if (error.code === -32002) {
+                    messageDiv.textContent = '⏳ MetaMask connection pending. Please check MetaMask popup.';
+                } else {
+                    messageDiv.textContent = 'Error: ' + error.message;
+                }
+                messageDiv.className = 'message error';
+            }
+        });
+    </script>
+</body>
+</html>
