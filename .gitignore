@@ -126,8 +126,6 @@ Thumbs.db
 *.db-shm
 *.db-wal
 docuchain.db*
-database.db*
-documents.db*
 
 # Node.js (if applicable)
 node_modules/

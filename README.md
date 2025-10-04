@@ -1,202 +1,105 @@
 # 🔗 DocuChain - Blockchain Document Management System
 
-![Blockchain](https://img.shields.io/badge/Blockchain-Ethereum-blue)
-![Smart Contract](https://img.shields.io/badge/Smart%20Contract-Solidity-green)
-![Frontend](https://img.shields.io/badge/Frontend-JavaScript-yellow)
-![Backend](https://img.shields.io/badge/Backend-Python%20Flask-red)
-![Network](https://img.shields.io/badge/Network-Sepolia%20Testnet-orange)
+A secure, decentralized document management system built with Flask, Web3.js, and MetaMask integration. DocuChain allows users to upload documents to IPFS, verify them on the Sepolia blockchain, and manage access permissions through smart contracts.
 
-A decentralized document management system built on Ethereum blockchain that enables secure document storage, sharing, and verification with MetaMask integration.
+## ✨ Features
 
-## 🌟 Features
+- **🔐 Secure User Authentication** - Registration and login system with session management
+- **🦊 MetaMask Integration** - Connect your Ethereum wallet for blockchain interactions
+- **📤 Document Upload** - Upload documents with automatic IPFS storage
+- **⛓️ Blockchain Verification** - Smart contract verification on Sepolia testnet
+- **🤝 Document Sharing** - Share documents with other users with permission controls
+- **📱 Responsive Dashboard** - Clean, modern interface for document management
+- **🔄 Wallet Management** - Connect/disconnect different MetaMask wallets easily
 
-### Core Functionality
-- **🔐 Blockchain Authentication** - Secure login/registration using MetaMask wallet
-- **📄 Document Upload** - Upload documents with blockchain verification
-- **🤝 Document Sharing** - Share documents with other users securely
-- **🔍 Document Verification** - Verify document authenticity on blockchain
-- **👤 User Management** - Account creation and management
-- **🔄 Real-time Sync** - Dynamic address synchronization with MetaMask
+## 🛠️ Technology Stack
 
-### Security Features
-- **🛡️ Ownership Verification** - Cryptographic proof of document ownership
-- **🔒 Secure Sharing** - Permission-based document access control
-- **⚡ Transaction Validation** - Real blockchain transaction verification
-- **🎯 Address Consistency** - Automatic wallet address synchronization
+### Backend
+- **Flask** - Python web framework
+- **SQLite** - Database for user and document metadata
+- **Web3.py** - Ethereum blockchain interaction
 
-## 🏗️ Architecture
+### Frontend
+- **HTML/CSS/JavaScript** - Modern responsive UI
+- **Web3.js** - Ethereum wallet integration
+- **MetaMask** - Ethereum wallet connection
 
-### Tech Stack
-- **Frontend**: HTML5, CSS3, JavaScript, Web3.js
-- **Backend**: Python Flask, SQLite Database
-- **Blockchain**: Ethereum (Sepolia Testnet), Solidity Smart Contracts
-- **Wallet Integration**: MetaMask Web3 Provider
-- **File Storage**: Local storage with blockchain hash verification
-
-### Smart Contract
-- **Contract Address**: `0x1203dc6f5d10556449e194c0c14f167bb3d72208`
-- **Network**: Sepolia Ethereum Testnet
-- **Features**: Document storage, sharing permissions, ownership tracking
+### Blockchain
+- **Ethereum Sepolia Testnet** - For smart contract deployment
+- **IPFS** - Decentralized file storage
+- **Smart Contracts** - Document verification and sharing logic
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+- Python 3.8+
+- MetaMask browser extension
+- Node.js (for frontend dependencies)
+- Sepolia testnet ETH (from faucet)
 
-Before you begin, ensure you have the following installed:
+### Installation
 
-1. **Python 3.8+** - [Download Python](https://python.org/downloads/)
-2. **Git** - [Download Git](https://git-scm.com/downloads)
-3. **MetaMask Browser Extension** - [Install MetaMask](https://metamask.io/)
-4. **Sepolia ETH** - Get free testnet ETH from [Sepolia Faucet](https://sepoliafaucet.com/)
-
-### Installation Steps
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/docuchain-project.git
-cd docuchain-project
-```
-
-#### 2. Backend Setup
-```bash
-# Navigate to backend directory
-cd backend
-
-# Create virtual environment (recommended)
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-# Install required packages
-pip install -r requirements.txt
-```
-
-#### 3. Frontend Setup
-```bash
-# Navigate to frontend directory (from project root)
-cd frontend
-
-# No additional installation needed - pure JavaScript/HTML
-```
-
-#### 4. Configuration
-
-**Backend Configuration** (`backend/app.py`):
-```python
-# Update these values if needed
-CONTRACT_ADDRESS = '0x1203dc6f5d10556449e194c0c14f167bb3d72208'
-SEPOLIA_RPC_URL = 'https://sepolia.infura.io/v3/YOUR_INFURA_KEY'  # Optional: Add your Infura key
-```
-
-**MetaMask Setup**:
-1. Install MetaMask browser extension
-2. Create/import your wallet
-3. Switch to Sepolia Test Network
-4. Get free Sepolia ETH from faucet
-
-#### 5. Run the Application
-
-**Start Backend Server**:
-```bash
-cd backend
-python app.py
-```
-Server will start on `http://localhost:5000`
-
-**Access Frontend**:
-1. Open your web browser
-2. Navigate to `frontend/index.html` or serve it locally:
+1. **Clone the repository**
    ```bash
-   # Option 1: Python simple server
-   cd frontend
-   python -m http.server 8000
-   # Then visit http://localhost:8000
-   
-   # Option 2: Use Live Server extension in VS Code
-   # Right-click on index.html -> "Open with Live Server"
+   git clone https://github.com/mujju-212/docuchain-project.git
+   cd docuchain-project
    ```
-3. Connect your MetaMask wallet
 
-## 📋 Requirements
+2. **Set up Python virtual environment**
+   ```bash
+   cd backend
+   python -m venv venv
+   
+   # Windows
+   venv\Scripts\activate
+   
+   # Linux/Mac
+   source venv/bin/activate
+   ```
 
-### Python Dependencies (`requirements.txt`)
-```
-flask==2.3.3
-flask-cors==4.0.0
-python-dotenv==1.0.0
-requests==2.31.0
-cryptography==41.0.7
-```
+3. **Install Python dependencies**
+   ```bash
+   pip install flask flask-cors web3 requests
+   ```
 
-### Browser Requirements
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- MetaMask extension installed and configured
-- JavaScript enabled
+4. **Start the Flask server**
+   ```bash
+   python app.py
+   ```
 
-### Blockchain Requirements
-- MetaMask wallet with Sepolia testnet configured
-- Small amount of Sepolia ETH for transactions (~0.01 ETH recommended)
+5. **Open your browser**
+   Navigate to `http://localhost:5000`
 
-## 📖 How to Use
+### MetaMask Setup
+
+1. Install MetaMask browser extension
+2. Add Sepolia testnet to MetaMask:
+   - Network Name: Sepolia
+   - RPC URL: `https://sepolia.infura.io/v3/YOUR_INFURA_KEY`
+   - Chain ID: 11155111
+   - Currency Symbol: ETH
+3. Get testnet ETH from [Sepolia faucet](https://sepoliafaucet.com/)
+
+## 📋 Usage
 
 ### 1. User Registration
-1. Open the application in your browser
-2. Click "Register" on the homepage
-3. Fill in your details (username, email, password)
-4. Connect your MetaMask wallet when prompted
-5. Confirm the registration transaction
+- Create a new account with username/password
+- Connect your MetaMask wallet during registration
 
-### 2. User Login
-1. Click "Login" on the homepage
-2. Enter your credentials
-3. Connect MetaMask wallet
-4. Access your dashboard
+### 2. Document Upload
+- Navigate to "Upload Document" tab
+- Select file and document type
+- Click "Upload to Blockchain" to store on IPFS and verify on blockchain
 
-### 3. Document Upload
-1. Go to your dashboard
-2. Click "Upload Document"
-3. Select your file (PDF, DOC, TXT, etc.)
-4. Add a description (optional)
-5. Confirm the blockchain transaction in MetaMask
-6. Wait for transaction confirmation
+### 3. Document Management
+- View your uploaded documents in "My Documents"
+- Share documents with other users
+- View documents shared with you in "Shared With Me"
 
-### 4. Document Sharing
-1. Find the document you want to share in your dashboard
-2. Click "Share" next to the document
-3. Enter the recipient's wallet address
-4. Choose permission level (read/write)
-5. Confirm the sharing transaction in MetaMask
-
-### 5. View Shared Documents
-1. Shared documents appear in "Shared with Me" section
-2. Click on any document to view details
-3. Download or view based on your permissions
-
-### 6. Getting Sepolia ETH
-1. Register a user to get a wallet address
-2. Visit: https://sepoliafaucet.com
-3. Request test ETH for your wallet address
-4. Wait 2-3 minutes for confirmation
-
-## 🔧 API Endpoints
-
-### Authentication
-- `POST /api/register` - User registration
-- `POST /api/login` - User login
-- `POST /api/sync-wallet` - Sync MetaMask address
-
-### Document Management
-- `POST /api/upload` - Upload new document
-- `GET /api/my-documents` - Get user's documents
-- `GET /api/shared-documents` - Get documents shared with user
-- `POST /api/share-document` - Share document with another user
-
-### Blockchain Verification
-- `POST /api/verify-transaction` - Verify blockchain transaction
+### 4. Wallet Management
+- Click "🦊 Connect MetaMask" to connect a wallet
+- Click "🔌 Disconnect Wallet" to disconnect current wallet
+- Switch between different MetaMask accounts easily
 
 ## 🏗️ Project Structure
 
@@ -204,112 +107,57 @@ cryptography==41.0.7
 docuchain-project/
 ├── backend/
 │   ├── app.py              # Main Flask application
-│   ├── requirements.txt    # Python dependencies
-│   ├── database.db        # SQLite database
-│   └── uploads/           # Uploaded files storage
+│   ├── database.py         # Database initialization
+│   ├── repair_database.py  # Database maintenance
+│   ├── test_api.py         # API testing
+│   └── docuchain.db        # SQLite database
 ├── frontend/
-│   ├── index.html         # Homepage
-│   ├── register.html      # Registration page
-│   ├── dashboard.html     # User dashboard
-│   ├── app_with_metamask.js # Main JavaScript logic
-│   ├── metamask.js        # MetaMask integration
-│   └── styles.css         # Application styles
-├── smart-contract/
-│   └── DocumentManager.sol # Solidity smart contract
-└── README.md              # This file
+│   ├── index.html          # Login page
+│   ├── register.html       # Registration page
+│   ├── dashboard.html      # Main dashboard
+│   ├── styles.css          # Application styles
+│   ├── app_with_metamask.js # Main application logic
+│   └── metamask.js         # MetaMask integration
+└── README.md
 ```
 
-## 🔐 Security Features
+## 🔧 Configuration
 
-### Blockchain Security
-- **Immutable Records**: All document hashes stored on blockchain
-- **Cryptographic Verification**: SHA-256 hashing for file integrity
-- **Smart Contract Validation**: Ownership and sharing verified on-chain
-
-### Application Security
-- **Wallet Authentication**: MetaMask signature verification
-- **Address Synchronization**: Dynamic wallet address updates
-- **Permission Control**: Granular sharing permissions
-- **Transaction Validation**: Real blockchain transaction verification
-
-## 🛠️ Development
+### Smart Contract
+- **Contract Address**: `0x1203dc6f5d10556449e194c0c14f167bb3d72208`
+- **Network**: Sepolia Testnet
+- **Chain ID**: 11155111
 
 ### Database Schema
-```sql
--- Users table
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY,
-    username TEXT UNIQUE,
-    email TEXT UNIQUE,
-    password_hash TEXT,
-    wallet_address TEXT,
-    created_at TIMESTAMP
-);
+- **users**: User authentication and wallet addresses
+- **documents**: Document metadata and IPFS hashes
+- **user_wallets**: Multiple wallet support per user
 
--- Documents table
-CREATE TABLE documents (
-    id INTEGER PRIMARY KEY,
-    filename TEXT,
-    file_hash TEXT,
-    owner_address TEXT,
-    document_id TEXT,
-    upload_time TIMESTAMP,
-    transaction_hash TEXT
-);
-```
+## 🚨 Security Features
 
-### Smart Contract Functions
-- `uploadDocument()` - Store document on blockchain
-- `shareDocument()` - Grant sharing permissions
-- `getDocument()` - Retrieve document information
-- `getSharedDocuments()` - Get documents shared with user
+- **Session Management** - Secure user sessions with timeout
+- **Wallet Verification** - Verify wallet ownership through MetaMask
+- **Input Validation** - All user inputs are validated and sanitized
+- **CSRF Protection** - Cross-site request forgery protection
+- **Database Security** - Prepared statements prevent SQL injection
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-**MetaMask Connection Issues**:
-- Ensure MetaMask is installed and unlocked
-- Switch to Sepolia Test Network
-- Refresh the page and try connecting again
+1. **MetaMask not connecting**
+   - Ensure MetaMask is installed and unlocked
+   - Check if you're on the correct network (Sepolia)
+   - Try disconnecting and reconnecting
 
-**Transaction Failures**:
-- Check you have sufficient Sepolia ETH
-- Increase gas limit if needed
-- Wait for network congestion to clear
+2. **Database locked error**
+   - Close any other instances of the application
+   - Delete `database.db-wal` and `database.db-shm` files if they exist
 
-**Upload Failures**:
-- Check file size (max 10MB recommended)
-- Ensure stable internet connection
-- Verify MetaMask is connected
-
-**Document Not Appearing**:
-- Wait for blockchain confirmation (1-2 minutes)
-- Refresh the dashboard
-- Check transaction status on Etherscan
-
-### Getting Help
-1. Check the browser console for error messages
-2. Verify MetaMask network and account
-3. Ensure backend server is running
-4. Check transaction status on [Sepolia Etherscan](https://sepolia.etherscan.io/)
-
-## 🚀 Deployment
-
-### Production Deployment
-1. **Backend**: Deploy Flask app to cloud service (Heroku, AWS, etc.)
-2. **Frontend**: Host static files on web server or CDN
-3. **Database**: Migrate to PostgreSQL or MySQL for production
-4. **Environment**: Set production environment variables
-5. **SSL**: Enable HTTPS for secure connections
-
-### Environment Variables
-```bash
-FLASK_ENV=production
-SECRET_KEY=your-production-secret-key
-DATABASE_URL=your-production-database-url
-INFURA_PROJECT_ID=your-infura-project-id
-```
+3. **Upload failures**
+   - Check your internet connection
+   - Ensure you have sufficient Sepolia ETH for gas fees
+   - Verify MetaMask is connected
 
 ## 🤝 Contributing
 
@@ -325,24 +173,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Ethereum Foundation** - For the blockchain infrastructure
-- **MetaMask** - For wallet integration
-- **Flask** - For the web framework
-- **Solidity** - For smart contract development
+- [MetaMask](https://metamask.io/) for wallet integration
+- [IPFS](https://ipfs.io/) for decentralized storage
+- [Ethereum](https://ethereum.org/) for blockchain infrastructure
+- [Flask](https://flask.palletsprojects.com/) for the web framework
 
-## 📞 Support
+## 📞 Contact
 
-For support and questions:
-- Create an issue on GitHub
-- Check the troubleshooting section above
-- Review the documentation
+- **GitHub**: [@mujju-212](https://github.com/mujju-212)
+- **Email**: mujju786492@gmail.com
 
 ---
 
-**⚠️ Important Notes:**
-- This is a testnet application - use only Sepolia ETH
-- Never share your private keys or seed phrases
-- Always verify contract addresses before transactions
-- Keep your MetaMask and browser updated
-
-**🎯 Built for learning and demonstrating blockchain document management concepts**
+**⚠️ Disclaimer**: This is a demo application for educational purposes. Do not use in production without proper security audits and testing.
